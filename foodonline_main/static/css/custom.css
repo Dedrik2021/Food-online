@@ -7,6 +7,8 @@
 
 .show-notification {
     position: fixed;
+    min-width: 500px;
+    width: 500px;
     bottom: 100%;
     right: 20px;
     animation-name: show-toast;

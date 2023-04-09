@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,38 +30,29 @@
 		/>
 		<link href="{% static 'css/bootstrap-slider.css' %} " rel="stylesheet" />
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-		<!-- JAVASCRIPT -->
-		<script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<script src=" {% static 'js/modernizr.js' %} "></script>
-		<script src=" {% static 'js/bootstrap.js' %} "></script>
-
-		<style>
-			body,
-			.main-section p,
-			.mce-content-body p {
-				font: Normal 14px/24px 'Open Sans', sans-serif;
-				letter-spacing: 0px;
-				text-transform: none;
-				color: #515151 !important;
-			}
-		</style>
 	</head>
 
-	<body>
+	<body style="height: 100%">
 		<!--Main Wrapper-->
-		<div class="wrapper" style="display: flex; flex-direction: column; justify-content: space-between; height: auto">
+		<div style="display: flex; flex-direction: column; height: 100%" >
 			
 		{% include 'includes/navbar.html' %}
+            <div style="flex-grow: 1">
 
-        {% block content %}{% endblock content %}
+                {% block content %}{% endblock content %}
+            </div>
 
         {% include 'includes/footer.html' %}
 			
 		</div>
 
 		<!-- Modal Popup End -->
+        <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src=" {% static 'js/modernizr.js' %} "></script>
+		<script src=" {% static 'js/bootstrap.js' %} "></script>
 		<script src=" {% static 'js/scripts.js' %} "></script>
 		<script src=" {% static 'js/functions.js' %} "></script>
+        <script src="{% static 'js/custom.js' %}" ></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places&callback=initAutoComplete" async defer ></script>
 	</body>
 </html>

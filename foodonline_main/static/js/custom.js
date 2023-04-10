@@ -1,8 +1,10 @@
 let autocomplete;
+const address = document.getElementById('id_address')
+const geocoder = new google.maps.Geocoder()
 
 function initAutoComplete(){
 autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById('id_address'),
+    address,
     {
         types: ['geocode', 'establishment'],
         //default in this app is "IN" - add your country code
@@ -13,21 +15,19 @@ autocomplete.addListener('place_changed', onPlaceChanged);
 }
 
 function onPlaceChanged (){
-    var place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
 
     // User did not select the prediction. Reset the input field or alert()
     if (!place.geometry){
-        document.getElementById('id_address').placeholder = "Start typing...";
+        address.placeholder = "Start typing...";
     }
     else{
         console.log('place name=>', place.name)
     }
     // get the address components and assign them to the fields
 
-    const geocoder = new google.maps.Geocoder()
-    const address = document.getElementById('id_address').value
     
-    geocoder.geocode({'address': address}, function(results, status) {
+    geocoder.geocode({'address': address.value}, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
             const latitude = results[0].geometry.location.lat()
             const longitude = results[0].geometry.location.lng()
@@ -35,7 +35,7 @@ function onPlaceChanged (){
             $('#id_latitude').val(latitude)
             $('#id_longitude').val(longitude)
 
-            $('#id_address').val(address)
+            $('#id_address').val(address.value)
         }
     })
 

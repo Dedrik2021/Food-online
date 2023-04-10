@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from .utils import detectUser, send_verification_email
 
 from vendor.forms import VendorForm

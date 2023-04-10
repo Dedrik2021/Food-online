@@ -36,7 +36,12 @@
 																		<li class="gal-img">
 																			<div class="drag-list">
 																				<div class="item-thumb">
+																					{% if profile.profile_picture %}
+																					
 																					<img style="object-fit: cover" class="thumbnail" src="{{profile.profile_picture.url}}" alt="Profile pictures">
+																					{% else %}
+																					<img style="object-fit: cover" class="thumbnail" src="{% static 'images/extra-images/pizza-600x600.jpg' %}" alt="Profile pictures">
+																					{% endif %}
 																				</div>
 																			</div>
 																		</li>
@@ -58,7 +63,13 @@
 																		<li class="gal-img">
 																			<div class="drag-list">
 																				<div class="item-thumb" >
+																					{% if profile.cover_photo %}
+																					
 																					<img class="thumbnail" style="object-fit: contain" src="{{profile.cover_photo.url}}" alt="Cover Photo">
+																					{% else %}
+																					<img style="object-fit: cover" class="thumbnail" src="{% static 'images/extra-images/pizza-600x600.jpg' %}" alt="Profile pictures">
+																					{% endif %}
+																					
                                                                                     
 																				</div>
 																			</div>
@@ -82,7 +93,13 @@
 																		<li class="gal-img">
 																			<div class="drag-list">
 																				<div class="item-thumb">
+																					{% if vendor.vendor_license %}
+																					
 																					<img style="object-fit: cover" class="thumbnail" src="{{vendor.vendor_license.url}}" alt="Vendor License">
+																					{% else %}
+																					<img style="object-fit: cover" class="thumbnail" src="{% static 'images/extra-images/pizza-600x600.jpg' %}" alt="Profile pictures">
+																					{% endif %}
+																					
 																				</div>
 																			</div>
 																		</li>
@@ -104,18 +121,6 @@
 																{{vendor_form.vendor_name}}
 															</div>
 														</div>
-														{% comment %} <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-															<div class="field-holder">
-																<label>Address Line 1 *</label>
-																{{profile_form.address_line_1}}
-															</div>
-														</div>
-														<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-															<div class="field-holder">
-																<label>Address Line 2 </label>
-																{{profile_form.address_line_2}}
-															</div>
-														</div> {% endcomment %}
 														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															<div class="field-holder">
 																<label>Address * </label>

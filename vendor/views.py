@@ -193,6 +193,7 @@ def edit_food(request, pk=None):
             food.slug = slugify(foodtitle)
             form.save()
             messages.success(request, 'Food Item updated successfully!')
+            
             return redirect('fooditems_by_category', food.category.id)
         else:
             print(form.errors)

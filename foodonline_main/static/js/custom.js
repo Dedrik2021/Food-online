@@ -67,3 +67,35 @@ function onPlaceChanged (){
         }
     }
 }
+
+
+// const addBtns = document.querySelectorAll(".add-to-cart")
+
+// addBtns.forEach((item) => {
+//     return item.addEventListener("click", function(e) {
+//         e.preventDefault()
+//         alert(e)
+//     })
+// })
+
+
+
+$(document).ready(function() {
+    $('.add-to-cart').on("click", function() {
+        
+        food_id = $(this).attr('data-id')
+        url = $(this).attr('data-url')
+        data = {
+            food_id: food_id
+        }
+        
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: data,
+            success: function(response) {
+                alert(response)
+            }
+        })
+    })
+})

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'vendor',
     'menu',
     'marketplace',
+    'django.contrib.gis',
 ]
 
 MIDDLEWARE = [
@@ -86,11 +87,13 @@ WSGI_APPLICATION = 'foodonline_main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': config('DB_NAME', default=""),
         'USER': config('DB_USER', default=""),
         'PASSWORD': config('DB_PASSWORD', default=""),
-        'HOST': config('DB_HOST', default="")
+        'HOST': config('DB_HOST', default=""),
+        'PORT': '5432'
     }
 }
 
@@ -161,4 +164,11 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 #Google geo
-GOOGLE_API_KEY = 'AIzaSyCuC4Slx-9FPPX5fdYiAJflWPf2woNmlGM'
+GOOGLE_API_KEY = 'AIzaSyD-o6tAP5jUBfFP5kY3B9vmSPw35QseR8w'
+
+
+if os.name == 'nt':
+    VENV_BASE = os.environ['VIRTUAL_ENV']
+    os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
+    os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ['PATH']
+    GDAL_LIBRARY_PATH = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\gdal304.dll')

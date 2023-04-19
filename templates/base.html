@@ -22,7 +22,7 @@
 
 		<!-- CSS -->
 		<link href="{% static 'css/iconmoon.css' %} " rel="stylesheet" />
-		<link href="{% static ' css/style.css' %}" rel="stylesheet" />
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" />
 		<link href="{% static 'css/cs-foodbakery-plugin.css' %} " rel="stylesheet" />
 		<link
 			rel="stylesheet"
@@ -51,17 +51,17 @@
 		<script src=" {% static 'js/bootstrap.js' %} "></script>
 		<script src=" {% static 'js/scripts.js' %} "></script>
 		<script src=" {% static 'js/functions.js' %} "></script>
-		<script src="{% static 'js/custom.js' %}"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		{% if '/profile/' in request.GET %}
+		<script src="{% static 'js/custom.js' %}"></script>
+		{% if '/' == request.path or 'profile' in request.path %}
 		<script
 			src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_API_KEY}}&libraries=places&callback=initAutoComplete"
-			async
 			defer
 		></script>
 		{% endif %}
 
 		<script>
+			
 			$(document).ready(function() {
 				{% comment %} 
 				add to cart btns

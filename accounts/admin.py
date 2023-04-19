@@ -14,5 +14,6 @@ class CustomerAdmin(UserAdmin):
     fieldsets = ()
 
 
+
 admin.site.register(UserProfile)
 admin.site.register(User, CustomerAdmin)

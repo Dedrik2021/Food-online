@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="page-section restaurant-detail-image-section" style=" background: url({% if vendor.user_profile.cover_photo %}{{vendor.user_profile.cover_photo.url}} {% else %} {% static 'images/extra-images/pizza-600x600.jpg' %} {% endif %}) no-repeat scroll 0 0 / cover; height: 45vh">
+<div class="page-section restaurant-detail-image-section" style=" background: url({% if vendor.user_profile.cover_photo %}{{vendor.user_profile.cover_photo.url}} {% else %} {% static 'extra-images/pizza-600x600.jpg' %} {% endif %}) no-repeat scroll 0 0 / cover; height: 45vh">
     <!-- Container Start -->
     <div class="container">
         <!-- Row Start -->
@@ -16,7 +16,7 @@
                                 <img src="{{vendor.user_profile.profile_picture.url}}" height="100" width="100" alt="">
 
                                 {% else %}
-                                <img src="{% static 'images/extra-images/pizza-600x600.jpg' %}" height="100" width="100" alt="">
+                                <img src="{% static 'extra-images/menu-1-1.png' %}" height="100" width="100" alt="">
                                 {% endif %}
                             </figure>
                         </div>

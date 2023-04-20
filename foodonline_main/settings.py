@@ -164,7 +164,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 #Google geo
-GOOGLE_API_KEY = 'AIzaSyD-o6tAP5jUBfFP5kY3B9vmSPw35QseR8w'
+GOOGLE_API_KEY = config('GOOGLE_API_KEY')
 
 
 if os.name == 'nt':

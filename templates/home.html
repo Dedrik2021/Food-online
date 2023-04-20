@@ -135,7 +135,7 @@
 							{% for vendor in vendors %}
 							<li class="has-border">
 								<figure>
-									<a href="#">
+									<a href="{% url 'vendor_detail' vendor.vendor_slug %}">
 										{% if vendor.user_profile.profile_picture %}
 										<img
 											src="{{vendor.user_profile.profile_picture.url}}"
@@ -191,7 +191,7 @@
 								<div style="display: flex; align-items: center">
 									<div class="img-holder" style="width: 95px">
 										<figure>
-											<a href="#">
+											<a href="{% url 'vendor_detail' vendor.vendor_slug %}">
 												{% if vendor.user_profile.url %}
 												<img
 													src="{{vendor.user_profile.profile_picture.url}}"
@@ -226,7 +226,7 @@
 										</div>
 										<div class="post-title">
 											<h5>
-												<a href="listing-detail.html">{{vendor}}</a>
+												<a href="{% url 'vendor_detail' vendor.vendor_slug %}">{{vendor}}</a>
 											</h5>
 										</div>
 										
@@ -238,7 +238,16 @@
 												{{vendor.user_profile.pin_code}}
 											</span>
 											{% endif %}
-											{% comment %} Type of food : </span> Apple Juice {% endcomment %}
+											
+											{% if vendor.kms %}
+												<br>
+												<span>
+													<small>
+														<b>{{vendor.kms}} km</b>
+														away
+													</small>
+												</span>
+											{% endif %}
 										</address>
 									</div>
 								</div>

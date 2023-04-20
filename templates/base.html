@@ -38,7 +38,7 @@
 
 	<body style="height: 100%">
 		<!--Main Wrapper-->
-		<div style="display: flex; flex-direction: column; height: 100%;">
+		<div style="display: flex; flex-direction: column; height: 100%">
 			{% include 'includes/navbar.html' %}
 			<div style="flex-grow: 1">{% block content %}{% endblock content %}</div>
 
@@ -61,19 +61,19 @@
 		{% endif %}
 
 		<script>
-			
+
 			$(document).ready(function() {
-				{% comment %} 
+				{% comment %}
 				add to cart btns
 				{% endcomment %}
 				$('.add-to-cart').on("click", function() {
-					
+
 					food_id = $(this).attr('data-id')
 					url = $(this).attr('data-url')
 					data = {
 						food_id: food_id
 					}
-					
+
 					$.ajax({
 						type: 'GET',
 						url,
@@ -97,7 +97,7 @@
 									response.cart_amount['grand_total'],
 								)
 							}
-							
+
 						}
 					})
 				})
@@ -109,18 +109,18 @@
 				})
 
 
-				{% comment %} 
+				{% comment %}
 				remove to cart btns
 				{% endcomment %}
 				$('.decrease-cart').on("click", function() {
-					
+
 					food_id = $(this).attr('data-id')
 					cart_id = $(this).attr('id')
 					url = $(this).attr('data-url')
 					data = {
 						food_id: food_id
 					}
-					
+
 					$.ajax({
 						type: 'GET',
 						url,
@@ -146,25 +146,25 @@
 									response.cart_amount['tax'],
 									response.cart_amount['grand_total'],
 								)
-								
+
 							}
-							
+
 						}
 					})
 				})
 
 
-				{% comment %} 
+				{% comment %}
 				deleted crt item
 				{% endcomment %}
 				$('.delete-cart').on("click", function() {
-					
+
 					cart_id = $(this).attr('data-id')
 					url = $(this).attr('data-url')
 					data = {
 						cart_id: cart_id
 					}
-					
+
 					$.ajax({
 						type: 'GET',
 						url,
@@ -186,13 +186,13 @@
 									response.cart_amount['grand_total'],
 								)
 							}
-							
+
 						}
 					})
 				})
 
 
-				{% comment %} 
+				{% comment %}
 				deleted crt item element ife qty 0
 				{% endcomment %}
 				function removeCartItem(cartItemQty, cart_id) {
@@ -225,7 +225,6 @@
 					}
 				}
 			})
-			
 		</script>
 	</body>
 </html>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% load static %} {% block content %} {% include 'includes/alerts.html' %}
+
+<!-- Main Section Start -->
+<div class="main-section">
+	{% include 'includes/cover.html' %}
+
+	<div class="page-section account-header buyer-logged-in">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="user-account-nav user-account-sidebar">
+						{% include 'includes/v_sidebar.html' %}
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+					<div class="user-dashboard loader-holder">
+						<div class="user-holder text-center">
+							<h1 class="text-center text-uppercase">Opening hours</h1>
+							<br>
+							
+                            <table class="table">
+                                <tbody class="opening-hours">
+                                    {% for hour in opening_hours  %}
+                                    
+                                    <tr id="hour-{{hour.id}}">
+                                        <td>
+                                            <b>{{hour}}</b>
+                                        </td>
+                                        <td>
+                                            {% if hour.is_closed  %}
+                                                Closed
+                                            {% else %}
+                                            {{hour.from_hour}} - {{hour.to_hour}}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="#" class="remove-hour" data-url="{% url 'remove_opening_hours' hour.id %}">
+                                                Remove
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <br>
+                            <br>
+
+                            <form id="opening_hours" style="display: flex; flex-direction: column;">
+                                {% csrf_token %}
+                                <div class="row" style="align-items: center; margin-bottom: 20px">
+                                    <div class="col-md-3">
+                                        {{form.day}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{form.from_hour}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        {{form.to_hour}}
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label  style="margin: 0">
+                                            {{form.is_closed}} Set as Closed
+                                        </label>
+                                    </div>
+                                </div>
+                                <input type="hidden" value="{% url 'add_opening_hours' %}" id="add_hour_url">
+                                <button class="btn btn-success add-hour" style="width: 30%;">Add Hours</button>
+                            </form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Main Section End -->
+
+{% endblock content %}

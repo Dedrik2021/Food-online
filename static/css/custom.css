@@ -38,3 +38,8 @@
     font-size: 12px;
     cursor: pointer;
 }
+
+
+#opening_hours select {
+    padding: 5px 10px !important;
+}

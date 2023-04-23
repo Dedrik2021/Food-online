@@ -239,13 +239,28 @@
 										</div>
 										
 										<address>
-											{% if vendor.user_profile.city and vendor.user_profile.state and vendor.user_profile.pin_code %}
 											<span class=" text-color">
-												{{vendor.user_profile.city}}, 
+												{% if vendor.user_profile.address %}
+												{{vendor.user_profile.address}},
+												{% endif %}
+
+												{% if not vendor.user_profile.address and vendor.user_profile.city %}
+												{{vendor.user_profile.city}},
+												{% endif %}
+
+												{% if not vendor.user_profile.address and vendor.user_profile.state %}
 												{{vendor.user_profile.state}},
+												{% endif %}
+
+												{% if not vendor.user_profile.address and vendor.user_profile.country %}
+												{{vendor.user_profile.country}}
+												{% endif %}
+
+												{% if vendor.user_profile.pin_code %}
 												{{vendor.user_profile.pin_code}}
+												{% endif %}
+											
 											</span>
-											{% endif %}
 											
 											{% if vendor.kms %}
 												<br>

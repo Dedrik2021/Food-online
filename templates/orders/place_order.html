@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Main Section Start -->
+<div class="main-section">
+    <div class="page-section restaurant-detail-image-section" style=" background: url({% static 'extra-images/cover-photo-3.png' %}) no-repeat scroll 0 0 / cover;" >
+        <!-- Container Start -->
+        <div class="container">
+            
+        </div>
+        <!-- Container End -->
+    </div>
+
+    <div class="page-section">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="tabs-holder horizontal">
+                        <ul class="stickynav-tabs nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home"><i class="fa fa-shopping-cart text-danger"></i>Review Your Billing Address</a></li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane in active">
+                                <div class="menu-itam-holder">
+
+                                    
+                                    
+                                    <div id="menu-item-list-6272" class="menu-itam-list">
+                                        <div class="billing-address">
+                                            <div><b> Name:</b> {{order.name}}</div>
+                                            <div><b> Address:</b> {{order.address}}</div>
+                                            <div><b>City:</b> {{order.city}} - {{order.pin_code}}</div>
+                                            <div><b>State:</b> {{order.state}}, {{order.country}}</div>
+                                            <div><b>Phone: </b> ( +420 ) {{order.phone}}</div>
+                                            <div><b>Email: </b> {{order.email}}</div>
+                                            <div><b>Payment: </b> {{order.payment_method}}</div>
+                                            <br>
+                                            <div>
+                                                <a href="{% url 'checkout' %}" class="btn btn-outline-danger">Edit</a>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- order section -->
+                <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
+                    <div class="tabs-holder horizontal">
+                        <ul class="stickynav-tabs nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home"><i class="icon- icon-room_service"></i>Your Order</a></li>
+                            
+                        </ul>
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane in active">
+                                <div class="menu-itam-holder">
+                                    <div>
+                                        
+                                    </div>
+                                    <table class="table">
+                                        <tbody>
+                                            {% for item in cart_items %}
+                                                <tr >
+                                                    <td style="padding: 3px;">
+                                                        <img src="{{item.fooditem.image.url}}" width="40" alt="Food image">
+                                                    </td>
+                                                    <td style="padding: 3px; font-size: 10px; line-height: 1.2"><b>{{item.fooditem}}</b></td>
+                                                    <td style="padding: 3px; font-size: 10px; line-height: 1.2"> {{item.quantity}} <b>Ks.</b> </td>
+                                                    <td style="padding: 3px; font-size: 10px; line-height: 1.2"> {{item.fooditem.price}} <b>Kč.</b></td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <ul style="padding: 0">
+                                        
+                                        <li style="border-bottom: 1px solid red; padding-bottom: 5px; list-style: none;">
+                                            Subtotal
+                                            <span class="price float-right">
+                                            <span class="currency">$</span>
+                                            <span id="subtotal">{{subtotal}}</span>
+                                        </span>
+                                    </li>
+
+
+                                    {% for key, value in tax_dict.items  %}
+                                        {% for i, j in value.items  %}
+                                            <li style="border-bottom: 1px solid red; padding: 5px 0; list-style: none;">
+                                                {{key}} <small>({{i}} %)</small>
+                                                <span class="price float-right">
+                                                    <span class="currency">$</span>
+                                                    <span id="tax-{{key}}">{{j}}</span>
+                                                </span>
+                                            </li>
+                                        {% endfor %}
+                                        {% endfor %}
+                                        
+                                        <li style="font-weight: 600; padding: 5px 0; border-bottom: 1px solid red; list-style: none;">
+                                        TOTAL
+                                        <span class="price float-right">
+                                            <span class="currency">$</span>
+                                            <span id="total">{{grand_total}}</span>
+                                        </span>
+                                    </li>
+                                </ul>
+                                <div id="paypal-button-container"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Main Section End -->
+<script>
+    const url = "{% url 'payments' %}"
+    const order_number = "{{order.order_number}}"
+    const csrftoken = getCookie('csrftoken')
+    const order_complete = "{% url 'order_complete' %}"
+
+    console.log('csrftoken', csrftoken)
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+
+    paypal.Buttons({
+        // Call your server to set up the transaction
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: "{{grand_total}}"
+                    }
+                }]
+            })
+        },
+
+        // Call your server to finalize the transaction
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(orderData) {
+                console.log(orderData)
+                const transaction = orderData.purchase_units[0].payments.captures[0]
+
+                sendTransaction(transaction.id, 'PayPal', orderData.status) 
+
+                const elementBtn = document.querySelector('#paypal-button-container')
+                elementBtn.innerHTML = ''
+                elementBtn.innerHTML = `<h4 class="text-center"><i class="fa fa-spinner fa-spin"></i>Please Wait...</h4>`
+            })  
+        }
+
+    }).render('#paypal-button-container');
+
+
+    function sendTransaction(transaction_id, payment_method, status) {
+        $.ajax({
+            type: 'POST',
+            url,
+            data: {
+                'order_number': order_number,
+                'payment_method': payment_method,
+                'transaction_id': transaction_id,
+                'status': status,
+                'csrfmiddlewaretoken': csrftoken
+            },
+
+            success: function(response) {
+                console.log('response', response)
+                window.location.href = order_complete + '?order_no=' + response.order_number + '&trans_id=' + response.transaction_id
+            }
+        })
+    }
+</script>
+</body>
+{% endblock content %}

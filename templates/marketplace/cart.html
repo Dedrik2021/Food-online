@@ -119,7 +119,7 @@
                                         {% endfor %}
                                     {% endfor %}
 
-                                    <li style="font-weight: 600; padding-top: 5px">
+                                    <li style="font-weight: 600; padding: 5px 0; border-bottom: 1px solid red;">
                                         TOTAL
                                         <span class="price float-right">
                                             <span class="currency">$</span>
@@ -127,7 +127,7 @@
                                         </span>
                                     </li>
                                 </ul>
-
+                                <a href="{% url 'checkout' %}" class="btn btn-danger w-100 p-2 mb-3">PROCEED TO CHECKOUT</a>
                                 </div>
                             </div>
                             

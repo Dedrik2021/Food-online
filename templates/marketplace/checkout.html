@@ -148,17 +148,17 @@
                                         </span>
                                     </li>
                                 </ul>
-                                <h3 class="text-center" style="margin-bottom: 15px">SELLECT PAYMENT METHOD</h3>
+                                {% comment %} <h3 class="text-center" style="margin-bottom: 15px">SELLECT PAYMENT METHOD</h3> {% endcomment %}
                                 <div class="payment-method text-center" style="margin-bottom: 25px">
                                     <label onclick="return checkPayment()">
                                         <input type="radio" name="payment_method" value="PayPal" style="position: absolute; opacity: 0; height: 0; width: 0;">
                                         <img style="cursor: pointer; padding: 5px" src="{% static 'images/PayPal.png' %}" alt="PayPal" height="40">
                                     </label>
-                                    &emsp;
+                                    {% comment %} &emsp;
                                     <label onclick="return checkPayment()">
                                         <input type="radio" name="payment_method" value="RazorPay" style="position: absolute; opacity: 0; height: 0; width: 0">
                                         <img  style="cursor: pointer; padding: 5px" src="{% static 'images/razorpay_logo.png' %}" alt="RazorPay" height="40">
-                                    </label>
+                                    </label> {% endcomment %}
                                     <div class="text-danger" id="payment-method-error"></div>
                                 </div>
                                 <button onclick="return payMethodConfirm()" type="submit" class="btn btn-danger w-100 p-2 mb-3">PLACE ORDER</button>
@@ -199,6 +199,6 @@
     function checkPayment() {
         $('#payment-method-error').html("")
     }
-</script>
+</script> 
 
 {% endblock content %}

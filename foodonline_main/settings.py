@@ -56,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'orders.request_object.RequestObjectMiddleware',
 ]
 
 ROOT_URLCONF = 'foodonline_main.urls'
@@ -180,6 +182,3 @@ if os.name == 'nt':
 PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
 
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
-
-# RZP_KEY_ID = 'rzp_test_90I8QObOtoUOXH'
-# RZP_KEY_SECRET = 'DOIpp11JgWEPFiXahwV2GaFq'

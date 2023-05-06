@@ -48,7 +48,7 @@
                                                     <a href="{% url 'vendor_detail' item.fooditem.vendor.vendor_slug %}" class="badge badge-warning">{{item.fooditem.vendor}}</a>
                                                 </div>
                                                 <div class="price-holder" >
-                                                    <span class="price" style="margin-right: 30px">$ {{item.fooditem.price}} </span>
+                                                    <span class="price" style="margin-right: 30px">{{item.fooditem.price}} Kč.</span>
                                                     <button data-id="{{item.fooditem.id}}" data-url="{% url 'decrease_cart' item.fooditem.id %}"  type="button" class="decrease-cart btn" id="{{item.id}}"  style="margin-right: 40px;padding: 0px 8px; font-size: 15px; border: 1px solid red; border-radius: 50%; ">
                                                         -
                                                     </button>
@@ -101,8 +101,8 @@
                                     <li style="border-bottom: 1px solid red; padding-bottom: 5px">
                                         Subtitle
                                         <span class="price float-right">
-                                            <span class="currency">$</span>
                                             <span id="subtotal">{{subtotal}}</span>
+                                            <span class="currency">Kč.</span>
                                         </span>
                                     </li>
 
@@ -112,8 +112,8 @@
                                             <li style="border-bottom: 1px solid red; padding: 5px 0">
                                                 {{key}} <small>({{i}} %)</small>
                                                 <span class="price float-right">
-                                                    <span class="currency">$</span>
                                                     <span id="tax-{{key}}">{{j}}</span>
+                                                    <span class="currency">Kč.</span>
                                                 </span>
                                             </li>
                                         {% endfor %}
@@ -122,8 +122,8 @@
                                     <li style="font-weight: 600; padding: 5px 0; border-bottom: 1px solid red;">
                                         TOTAL
                                         <span class="price float-right">
-                                            <span class="currency">$</span>
                                             <span id="total">{{grand_total}}</span>
+                                            <span class="currency">Kč.</span>
                                         </span>
                                     </li>
                                 </ul>

@@ -8,88 +8,71 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="user-dashboard loader-holder" style="min-height: auto; width: 500px;">
+					<div class="user-dashboard loader-holder" style="min-height: auto; max-width: 500px; width: 100%">
 						<div class="user-holder">
 							<h4 class="text-center" style="margin-bottom: 0">SIGN IN</h4>
 							<p class="text-center">Order food from your favorite restaurants.</p>
 							<hr />
-							<div id="restaurant-sets-holder">
-								<form
+							<form
 									class="form-fields-set foodbakery-dev-restaurant-form"
 									method="POST"
 									action="{% url 'login' %}"
 									enctype="multipart/form-data"
+									style="max-width: 500px; width: 100%;"
 								>
 									{% csrf_token %}
-									<ul
-										class="register-add-restaurant-tab-container restaurant-information-tab-container"
-									>
-										<li>
-											<div class="row">
-												<div
-													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												>
-													<div class="row" style="width: 500px; display: flex; flex-direction: column; justify-content: center; ">
-														<div
-															class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
-															style="max-width: 480px; width: 100%"
-														>
-															<div class="field-holder">
-																<label>Email Address</label>
-																<input
-																	type="email"
-																	name="email"
-																	placeholder="Enter your email adress"
-																/>
-															</div>
-														</div>
+									<div class="row">
+										<div class="row" style="max-width: 480px; margin: 0; width: 100%; display: flex; flex-direction: column; justify-content: center; ">
+											<div
+												class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+												style="max-width: 480px; width: 100%"
+											>
+												<div class="field-holder" style="width: 100%">
+													<label>Email Address</label>
+													<input
+														type="email"
+														name="email"
+														placeholder="Enter your email adress"
+													/>
+												</div>
+											</div>
 
-														<div
-															class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
-															style="max-width: 480px; width: 100%"
-														>
-															<div class="field-holder">
-																<label>Password</label>
-																<input
-																	type="password"
-																	name="password"
-																	placeholder="Enter your password"
-																/>
-															</div>
-														</div>
-													</div>
+											<div
+												class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
+												style="max-width: 480px; width: 100%"
+											>
+												<div class="field-holder">
+													<label>Password</label>
+													<input
+														type="password"
+														name="password"
+														placeholder="Enter your password"
+													/>
 												</div>
 											</div>
-										</li>
-										<li>
-											<div class="row">
-												<div
-													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												>
-													<div class="field-holder">
-														<div class="payment-holder">
-															<input
-																type="submit"
-																value="Submit"
-																id="btn-next-restaurant-information"
-																class="bgcolor"
-															/>
-                                                            <a href="{% url 'forgot_password' %}" class="float-right">Forgot Pssword?</a>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div
-													class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-												>
-													{% include 'includes/alerts.html' %}
-												</div>
-											</div>
-										</li>
-									</ul>
+										</div>
+									</div>
+									
+									<div class="field-holder">
+										<div class="payment-holder" style="display: flex; justify-content: space-between; align-items: center;">
+											<input
+												type="submit"
+												value="Submit"
+												id="btn-next-restaurant-information"
+												class="bgcolor"
+											/>
+											<a href="{% url 'forgot_password' %}" class="float-right">Forgot Pssword?</a>
+										</div>
+									</div>
+									</div>
+									<div class="row">
+										<div
+											class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										>
+											{% include 'includes/alerts.html' %}
+										</div>
+									</div>
 								</form>
-							</div>
 						</div>
 					</div>
 				</div>

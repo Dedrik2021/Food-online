@@ -110,7 +110,7 @@
                                                     <a href="{% url 'vendor_detail' item.fooditem.vendor.vendor_slug %}" class="badge badge-warning">{{item.fooditem.vendor}}</a>
                                                 </div>
                                                 <div class="price-holder row" >
-                                                    <span class="price" style="margin-right: 30px">$ {{item.fooditem.price}} </span>
+                                                    <span class="price" style="margin-right: 30px">Kč. {{item.fooditem.price}} </span>
                                                     <span style=""><b>{{item.quantity}}</b> QTY</span>
                                                 </div>
                                             </li>
@@ -122,7 +122,7 @@
                                     <li style="border-bottom: 1px solid red; padding-bottom: 5px">
                                         Subtitle
                                         <span class="price float-right">
-                                            <span class="currency">$</span>
+                                            <span class="currency">Kč.</span>
                                             <span id="subtotal">{{subtotal}}</span>
                                         </span>
                                     </li>
@@ -133,7 +133,7 @@
                                             <li style="border-bottom: 1px solid red; padding: 5px 0">
                                                 {{key}} <small>({{i}} %)</small>
                                                 <span class="price float-right">
-                                                    <span class="currency">$</span>
+                                                    <span class="currency">Kč.</span>
                                                     <span id="tax-{{key}}">{{j}}</span>
                                                 </span>
                                             </li>
@@ -143,7 +143,7 @@
                                     <li style="font-weight: 600; padding: 5px 0; border-bottom: 1px solid red;">
                                         TOTAL
                                         <span class="price float-right">
-                                            <span class="currency">$</span>
+                                            <span class="currency">Kč.</span>
                                             <span id="total">{{grand_total}}</span>
                                         </span>
                                     </li>
